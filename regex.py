@@ -50,7 +50,7 @@ def shunt(infix):
             while opers[-1] != '(':
                 postfix.append(opers.pop())
                 # Get rid of the '('
-                opers.pop()
+            opers.pop()
         elif c in prec:    # If c is an operator or a bracket do something
             # Push any operators on the operators stack with higher precidence to the output
             while opers and prec[c]<prec[opers[-1]]:
@@ -68,7 +68,7 @@ def shunt(infix):
     # Convert output list to string
     return''.join(postfix)
 
-def regexCompile(infix):
+def compile(infix):
     postfix = shunt(infix)
     postfix = list(postfix) [::-1]
     
@@ -101,7 +101,7 @@ def regexCompile(infix):
             fragment = nfaStack.pop()
             # Create new start and accept states
             accept = State()
-            start = State(edges[fragment.start, accept])
+            start = State(edges=[fragment.start, accept])
             # Point the arrows
             fragment.accept.edges = [fragment.start, accept]
             # Create new instance of Fragment to represent the new NFA
@@ -115,17 +115,53 @@ def regexCompile(infix):
         # Push new fragment to NFA stack    
         nfaStack.append(newFragment)
 
-        #The nfa stack should have exactly 1 nfa on it (the answer) 
-        return nfaStack.pop()
+    #The nfa stack should have exactly 1 nfa on it (the answer) 
+    return nfaStack.pop()
+
+# Add a state to a set and follow all of the E(psilon) arrows
+def followes(state, current):
+    # Only do something if we haven't already seen the state
+    if state not in current:
+        # Put the state itself into current
+        current.add(state)
+        # See whether state is labeled by E(psilon)
+        if state.label is None:
+            # Loop through the states pointed to by this sate
+            for x in state.edges:
+                # Follow all of their E(psilon)s too
+                followes(x, current)
+
 
 def match(regex, s):
     # This function will return true if and ONLY if the regular expression
     # (regex) fullly matches the string s. It returns false otherwise.
 
     # Compile the regular expression into an NFA
-    nfa = regexCompile(regex)
-    # Ask the NFA if it matches the string s
-    #  return nfa.match(s)
-    return nfa
+    nfa = compile(regex)
+    
+    # Try to match the regular expression to the string s
+    # The current & previous sets of states
+    current = set()
+    # Add the first state and follow all E(psilon) arrows
+    followes(nfa.start, current)
+    previous = set()
 
-print(match("a.b|b*", "bbbbbbbbbbbb"))
+    # Loop through characters in s
+    for c in s:
+        # Keep track of where we were
+        previous = current
+        # Create a new empty set for states we're about to be in
+        current = set()
+        # Loop through the previous states
+        for state in previous:
+            # Only follow arrows not labeled by E(psilon)
+            if state.label is not None:
+                # If the label of the state = the character read
+                if state.label == c:
+                    # Add the state at the end of the arrow to current
+                    followes(state.edges[0], current)
+    
+    # Ask the NFA if it matches the string s
+    return nfa.accept in current
+
+print(match("a.b|b*", "bbbbbbbbbbbbbbbb"))
