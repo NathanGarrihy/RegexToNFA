@@ -159,6 +159,19 @@ def match(regex, s):
     
     # Ask the NFA if it matches the string s
     return nfa.accept in current
-# Checks if script has been run as a script by itself 
-assert match("a.b|b*", "bbbbbbbbbbbbbbbb"), "a.b|b* should match bbbbbbbbbbbbbbbb"
-assert not match("a.b|b*", "bbbbbbbbbbbbbbbx"), "a.b|b* should not match bbbbbbbbbbbbbbbx"
+# Checks if script has been run as a script by itself
+# Multi test assertion
+if __name__ in "__main__":
+    tests = [
+        ["a.b|b*", "bbbbbb", True],
+        ["a.b|b*", "bbbx", False],
+        ["a.b", "ab", True],
+        ["b**", "b", True],
+        ["b*", "", True]
+    ]
+
+    for test in tests:
+        assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1] 
+#assert match("a.b|b*", "bbbbbbbbbbbbbbbb"), "a.b|b* should match bbbbbbbbbbbbbbbb"
+#assert not match("a.b|b*", "bbbbbbbbbbbbbbbx"), "a.b|b* should not match bbbbbbbbbbbbbbbx"
