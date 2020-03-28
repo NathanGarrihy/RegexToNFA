@@ -160,5 +160,5 @@ def match(regex, s):
     # Ask the NFA if it matches the string s
     return nfa.accept in current
 # Checks if script has been run as a script by itself 
-    assert match("a.b|b*", "bbbbbbbbbbbbbbbb"), "a.b|b* should match bbbbbbbbbbbbbbbb"
-    assert not match("a.b|b*", "bbbbbbbbbbbbbbbx"), "a.b|b* should not match bbbbbbbbbbbbbbbx"
+assert match("a.b|b*", "bbbbbbbbbbbbbbbb"), "a.b|b* should match bbbbbbbbbbbbbbbb"
+assert not match("a.b|b*", "bbbbbbbbbbbbbbbx"), "a.b|b* should not match bbbbbbbbbbbbbbbx"
