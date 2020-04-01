@@ -238,6 +238,17 @@ if __name__ in "__main__":
         ["a.b|b*", "abbbbbbb", False]
     ]
     
+    mixedTests1 = [
+        ["a*|b*", "", True],
+        ["a*|b*", "a", True],  
+        ["a*|b*", "b", True],
+        ["a*|b*", "aaa", True],
+        ["a*|b*", "bbb", True],
+        ["a*|b*", "aaaab", False],
+        ["a*|b*", "bbbba", False],
+
+
+    ]
             
     # Concatinate Operator
     for test in concatTests:
@@ -266,6 +277,10 @@ if __name__ in "__main__":
 
     # Mixed Regular Expressions
     for test in mixedTests:
+        assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1]
+
+    for test in mixedTests1:
         assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
 
