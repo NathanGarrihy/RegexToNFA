@@ -192,9 +192,8 @@ if __name__ in "__main__":
     concatTests = [
         ["a.b", "", False],
         ["a.b", "ab", True],
-        ["a.b", "aaab",False]
-        
-            
+        ["a.b", "aaab", False],
+        ["a.b", "abbb", False]
     ]
         
     # One or more tests
@@ -207,7 +206,7 @@ if __name__ in "__main__":
     
           
             
-    ]
+    
 
     for test in concatTests:
         assert match(test[0], test[1]) == test[2], test[0] + \
