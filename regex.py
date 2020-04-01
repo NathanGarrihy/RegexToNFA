@@ -204,19 +204,32 @@ if __name__ in "__main__":
         ["a+", "aaaaaaaax", False]
     ]
     # None or one tests
-            
+    qmarkTests = [
+        ["a?", "", True],
+        ["a?", "a", True],
+        ["a?", "aaaaaa", False],
+        ["a?", "ax", False],
+
+
+    ]
     # Or tests
         
     # Any number of tests
     
           
             
-    # Test Concatinate
+    # Concatinate Operator
     for test in concatTests:
         assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
-    # Test One or more
+
+    # One or more Operator
     for test in plusTests:
         assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
+    
+    # None or one Operator
+    for test in qmarkTests:
+        assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1] 
 
