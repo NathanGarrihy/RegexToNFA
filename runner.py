@@ -2,10 +2,8 @@
 # Nathan Garrihy - G00354922
 import regex
 
-
-myStr = ""
-
 print("Execute regular expression on Strings using Ken Thomson's Construction: ")
+print("Valid operators: (+), (.), (*), (|), (?)")
 myExp = input("Enter regular expression: ")
 myStr = input("Enter string to check against regular expression (or -1 to exit): ")
 
