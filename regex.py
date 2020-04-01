@@ -299,4 +299,5 @@ def Test():
             assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]  
 
+# Call function to test regular expressions
 Test()
