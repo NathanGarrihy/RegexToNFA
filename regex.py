@@ -246,8 +246,16 @@ if __name__ in "__main__":
         ["a*|b*", "bbb", True],
         ["a*|b*", "aaaab", False],
         ["a*|b*", "bbbba", False],
+    ]
 
-
+    mixedTests2 = [
+        ["a*.b*", "", True],
+        ["a*.b*", "ab", True],
+        ["a*.b*", "aaabbbb", True],
+        ["a*.b*", "ababab", False],
+        ["a*.b*", "bbbaaaa", False],
+        ["a*.b*", "aa", True],
+        ["a*.b*", "bb", True]
     ]
             
     # Concatinate Operator
@@ -281,6 +289,10 @@ if __name__ in "__main__":
                (" should match " if test[2] else " should not match ")+ test[1]
 
     for test in mixedTests1:
+        assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1]
+
+    for test in mixedTests2:
         assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
 
