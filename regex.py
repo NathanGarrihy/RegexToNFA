@@ -30,7 +30,7 @@ def shunt(infix):
     postfix = []
 
     # Operator precedence
-    prec = {'*' : 100, '+' : 90, '.': 80, '|': 60, ')' : 40, '(' : 20}
+    prec = {'*' : 100, '+' : 90, '?':85, '.': 80, '|': 60, ')' : 40, '(' : 20}
 
     # Loop through the input 1 character at a time
     while infix:
@@ -78,6 +78,7 @@ def compile(infix):
     while postfix:
         # Pop a character from postfix
         c = postfix.pop()
+        # Concatinate
         if (c == '.'):
             # Pop 2 fragments off the stack
             fragment1 = nfaStack.pop()
@@ -88,6 +89,29 @@ def compile(infix):
             start = fragment2.start
             # The new accept state is frag1's
             accept = fragment1.accept
+        # One or more
+        elif (c == '+'):
+            # Pop last fragment off the stack
+            fragment = nfaStack.pop()
+
+            # Create new start and accept states
+            accept = State()
+            start = State(edges=[fragment.start])
+            # Point the arrows
+            fragment.accept.edges.append = [fragment.start]
+            fragment.accept.edges.append(accept)
+        # None or one
+        elif c == '?':
+            # Get the last fragment off the stack
+            fragment = nfaStack.pop()
+
+            # New start and accept states
+            accept = State()
+            start = State(edges=[fragment.start, fragment.accept])
+            # Point the arrows
+            fragment.start.edges.append(fragment.accept)
+            fragment.accept.edges.append(accept)
+        # Or
         elif c == '|':
             # Pop 2 fragments off the stack
             fragment1 = nfaStack.pop()
@@ -98,19 +122,21 @@ def compile(infix):
             # Point the old accept states at the new one
             fragment2.accept.edges.append(accept)
             fragment1.accept.edges.append(accept)
+        # Any number of
         elif c == '*':
-            # Pop 1 fragment off the stack
+            # Pop last fragment off the stack (LIFO)
             fragment = nfaStack.pop()
             # Create new start and accept states
             accept = State()
             start = State(edges=[fragment.start, accept])
             # Point the arrows
             fragment.accept.edges = [fragment.start, accept]
+        # Any other character
         else:
-            #   push a character to the nfaStack
+            # Push a character to the nfaStack
             accept = State()
             start = State(label=c, edges=[accept])
-        #The nfa stack should have exactly 1 nfa on it (the answer) 
+        # The nfa stack should have exactly 1 nfa on it (the answer) 
         newFragment = Fragment(start, accept)
         # Push new fragment to NFA stack    
         nfaStack.append(newFragment)
@@ -159,19 +185,31 @@ def match(regex, s):
     
     # Ask the NFA if it matches the string s
     return nfa.accept in current
-# Checks if script has been run as a script by itself
+
 # Multi test assertion
 if __name__ in "__main__":
-    tests = [
-        ["a.b|b*", "bbbbbb", True],
-        ["a.b|b*", "bbbx", False],
+    # Concatinate tests (.)
+    concatTests = [
+        ["a.b", "", False],
         ["a.b", "ab", True],
-        ["b**", "b", True],
-        ["b*", "", True]
+        ["a.b", "aaab",False]
+        
+            
+    ]
+        
+    # One or more tests
+
+    # None or one tests
+            
+    # Or tests
+        
+    # Any number of tests
+    
+          
+            
     ]
 
-    for test in tests:
+    for test in concatTests:
         assert match(test[0], test[1]) == test[2], test[0] + \
-               (" should match " if test[2] else " should not match ")+ test[1] 
-#assert match("a.b|b*", "bbbbbbbbbbbbbbbb"), "a.b|b* should match bbbbbbbbbbbbbbbb"
-#assert not match("a.b|b*", "bbbbbbbbbbbbbbbx"), "a.b|b* should not match bbbbbbbbbbbbbbbx"
+               (" should match " if test[2] else " should not match ")+ test[1]
+
