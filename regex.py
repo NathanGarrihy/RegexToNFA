@@ -20,8 +20,8 @@ class Fragment:
 # Shunting yard algorithm
 def shunt(infix):
     """Return the infix regular expression in postfix."""
-    # Convert the input into a stack-ish
-    infix = list(infix)[::-1] # returns reversed list
+    # Convert the input into a stack-ish reversed list
+    infix = list(infix)[::-1]
 
     # Operator stack.
     opers = []
@@ -186,113 +186,117 @@ def match(regex, s):
     # Ask the NFA if it matches the string s
     return nfa.accept in current
 
-# Multi test assertion
-if __name__ in "__main__":
-    # Concatinate tests (.)
-    concatTests = [
-        ["a.b", "", False],
-        ["a.b", "ab", True],
-        ["a.b", "aaab", False],
-        ["a.b", "abbb", False]
-    ]
+def Test():
+    # Multi test assertion
+    if __name__ in "__main__":
+        # Concatinate tests (.)
+        concatTests = [
+            ["a.b", "", False],
+            ["a.b", "ab", True],
+            ["a.b", "aaab", False],
+            ["a.b", "abbb", False]
+        ]
         
-    # One or more tests
-    plusTests = [
-        ["a+", "", False],
-        ["a+", "a", True],
-        ["a+", "aaaaaaaaa", True],
-        ["a+", "aaaaaaaax", False]
-    ]
-    # None or one tests
-    qmarkTests = [
-        ["a?", "", True],
-        ["a?", "a", True],
-        ["a?", "aaaaaa", False],
-        ["a?", "ax", False],
-
-
-    ]
-    # Or tests
-    orTests = [
-        ["a|b", "", False],
-        ["a|b", "a", True],
-        ["a|b", "b", True],
-        ["a|b", "ab", False]
-    ]
+        # One or more tests
+        plusTests = [
+            ["a+", "", False],
+            ["a+", "a", True],
+            ["a+", "aaaaaaaaa", True],
+            ["a+", "aaaaaaaax", False]
+        ]
+        # None or one tests
+        qmarkTests = [
+            ["a?", "", True],
+            ["a?", "a", True],
+            ["a?", "aaaaaa", False],
+            ["a?", "ax", False],
+        ]
+        # Or tests
+        orTests = [
+            ["a|b", "", False],
+            ["a|b", "a", True],
+            ["a|b", "b", True],
+            ["a|b", "ab", False]
+        ]
         
-    # Any number of tests
-    kleeneTests = [
-        ["a*", "", True],
-        ["a*", "a", True],
-        ["a*", "aaaaaaa", True],
-        ["a*", "aaaaaax", False]
-    ]
+        # Any number of tests
+        kleeneTests = [
+            ["a*", "", True],
+            ["a*", "a", True],
+            ["a*", "aaaaaaa", True],
+            ["a*", "aaaaaax", False]
+        ]
 
-    # Mixed expression tests
-    mixedTests = [
-        ["a.b|b*", "", True],
-        ["a.b|b*", "a", False],
-        ["a.b|b*", "b", True],
-        ["a.b|b*", "ab", True],
-        ["a.b|b*", "bb", True],
-        ["a.b|b*", "abbbbbbb", False]
-    ]
+        # Mixed expression tests
+        # a.b|b*
+        mixedTests = [
+            ["a.b|b*", "", True],
+            ["a.b|b*", "a", False],
+            ["a.b|b*", "b", True],
+            ["a.b|b*", "ab", True],
+            ["a.b|b*", "bb", True],
+            ["a.b|b*", "abbbbbbb", False]
+        ]
     
-    mixedTests1 = [
-        ["a*|b*", "", True],
-        ["a*|b*", "a", True],  
-        ["a*|b*", "b", True],
-        ["a*|b*", "aaa", True],
-        ["a*|b*", "bbb", True],
-        ["a*|b*", "aaaab", False],
-        ["a*|b*", "bbbba", False],
-    ]
-
-    mixedTests2 = [
-        ["a*.b*", "", True],
-        ["a*.b*", "ab", True],
-        ["a*.b*", "aaabbbb", True],
-        ["a*.b*", "ababab", False],
-        ["a*.b*", "bbbaaaa", False],
-        ["a*.b*", "aa", True],
-        ["a*.b*", "bb", True]
-    ]
+        # a*|b*
+        mixedTests1 = [
+            ["a*|b*", "", True],
+            ["a*|b*", "a", True],  
+            ["a*|b*", "b", True],
+            ["a*|b*", "aaa", True],
+            ["a*|b*", "bbb", True],
+            ["a*|b*", "aaaab", False],
+            ["a*|b*", "bbbba", False],
+        ]
+    
+        # a*.b*
+        mixedTests2 = [
+            ["a*.b*", "", True],
+            ["a*.b*", "ab", True],
+            ["a*.b*", "aaabbbb", True],
+            ["a*.b*", "ababab", False],
+            ["a*.b*", "bbbaaaa", False],
+            ["a*.b*", "aa", True],
+            ["a*.b*", "bb", True]
+        ]
             
-    # Concatinate Operator
-    for test in concatTests:
-        assert match(test[0], test[1]) == test[2], test[0] + \
+        # Concatinate Operator
+        for test in concatTests:
+            assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
 
-    # One or more Operator
-    for test in plusTests:
-        assert match(test[0], test[1]) == test[2], test[0] + \
+        # One or more Operator
+        for test in plusTests:
+            assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
     
-    # None or one Operator
-    for test in qmarkTests:
-        assert match(test[0], test[1]) == test[2], test[0] + \
+        # None or one Operator
+        for test in qmarkTests:
+            assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
 
-    # Or Operator
-    for test in orTests:
-        assert match(test[0], test[1]) == test[2], test[0] + \
+        # Or Operator
+        for test in orTests:
+            assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
 
-    # Klenne star Operator
-    for test in kleeneTests:
-        assert match(test[0], test[1]) == test[2], test[0] + \
+        # Klenne star Operator
+        for test in kleeneTests:
+            assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
 
-    # Mixed Regular Expressions
-    for test in mixedTests:
-        assert match(test[0], test[1]) == test[2], test[0] + \
+        # Mixed Regular Expressions
+        # a.b|b*
+        for test in mixedTests:
+            assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
-
-    for test in mixedTests1:
-        assert match(test[0], test[1]) == test[2], test[0] + \
+        # a*|b*
+        for test in mixedTests1:
+            assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
+        # a*.b*
+        for test in mixedTests2:
+            assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1]  
 
-    for test in mixedTests2:
-        assert match(test[0], test[1]) == test[2], test[0] + \
-               (" should match " if test[2] else " should not match ")+ test[1]
-
+Test()
