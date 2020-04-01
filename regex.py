@@ -227,7 +227,17 @@ if __name__ in "__main__":
         ["a*", "aaaaaaa", True],
         ["a*", "aaaaaax", False]
     ]
-          
+
+    # Mixed expression tests
+    mixedTests = [
+        ["a.b|b*", "", True],
+        ["a.b|b*", "a", False],
+        ["a.b|b*", "b", True],
+        ["a.b|b*", "ab", True],
+        ["a.b|b*", "bb", True],
+        ["a.b|b*", "abbbbbbb", False]
+    ]
+    
             
     # Concatinate Operator
     for test in concatTests:
@@ -252,4 +262,10 @@ if __name__ in "__main__":
     # Klenne star Operator
     for test in kleeneTests:
         assert match(test[0], test[1]) == test[2], test[0] + \
-               (" should match " if test[2] else " should not match ")+ test[1] 
+               (" should match " if test[2] else " should not match ")+ test[1]
+
+    # Mixed Regular Expressions
+    for test in mixedTests:
+        assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1]
+
