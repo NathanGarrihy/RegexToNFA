@@ -98,7 +98,7 @@ def compile(infix):
             accept = State()
             start = State(edges=[fragment.start])
             # Point the arrows
-            fragment.accept.edges.append = [fragment.start]
+            fragment.accept.edges.append(fragment.start)
             fragment.accept.edges.append(accept)
         # None or one
         elif c == '?':
@@ -197,7 +197,12 @@ if __name__ in "__main__":
     ]
         
     # One or more tests
-
+    plusTests = [
+        ["a+", "", False],
+        ["a+", "a", True],
+        ["a+", "aaaaaaaaa", True],
+        ["a+", "aaaaaaaax", False]
+    ]
     # None or one tests
             
     # Or tests
@@ -206,9 +211,12 @@ if __name__ in "__main__":
     
           
             
-    
-
+    # Test Concatinate
     for test in concatTests:
+        assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1]
+    # Test One or more
+    for test in plusTests:
         assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1]
 
