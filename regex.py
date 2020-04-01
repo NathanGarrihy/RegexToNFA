@@ -213,6 +213,12 @@ if __name__ in "__main__":
 
     ]
     # Or tests
+    orTests = [
+        ["a|b", "", False],
+        ["a|b", "a", True],
+        ["a|b", "b", True],
+        ["a|b", "ab", False]
+    ]
         
     # Any number of tests
     
@@ -229,6 +235,11 @@ if __name__ in "__main__":
                (" should match " if test[2] else " should not match ")+ test[1]
     
     # None or one Operator
+    for test in qmarkTests:
+        assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1]
+
+    # Or Operator
     for test in qmarkTests:
         assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1] 
