@@ -221,7 +221,12 @@ if __name__ in "__main__":
     ]
         
     # Any number of tests
-    
+    kleeneTests = [
+        ["a*", "", True],
+        ["a*", "a", True],
+        ["a*", "aaaaaaa", True],
+        ["a*", "aaaaaax", False]
+    ]
           
             
     # Concatinate Operator
@@ -240,7 +245,11 @@ if __name__ in "__main__":
                (" should match " if test[2] else " should not match ")+ test[1]
 
     # Or Operator
-    for test in qmarkTests:
+    for test in orTests:
+        assert match(test[0], test[1]) == test[2], test[0] + \
+               (" should match " if test[2] else " should not match ")+ test[1]
+
+    # Klenne star Operator
+    for test in kleeneTests:
         assert match(test[0], test[1]) == test[2], test[0] + \
                (" should match " if test[2] else " should not match ")+ test[1] 
-
