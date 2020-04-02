@@ -300,4 +300,4 @@ def Test():
                (" should match " if test[2] else " should not match ")+ test[1]  
 
 # Call function to test regular expressions
-Test()
+# DEBUG Test()
