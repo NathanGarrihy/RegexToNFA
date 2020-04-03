@@ -1,13 +1,13 @@
-Project:
+# Project:
 Thomson's Construction in Python - Graph Theory 2020 - G00354922
 
-Project Description:
+## Project Description:
 The goal for this project is to write a program in the Python programming language that can
 build a non-deterministic finite automaton (NFA) from a regular expression,
 and can use the NFA to check if the regular expression matches any given
 string of text.
 
-Research:
+## Research:
 Before really attempting this project, I watched the various associated videos which our lecturer uploaded to moodle as well as taking a good look at (https://www.python.org/) and (https://realpython.com/) since I had not done python before, I tried to understand how it worked when compared to other programming languages I had previously worked with. All of the code was done through VI using google cloud platform and this was also new to me so I was able to find a couple websites that made working with VI a lot easier, they are (https://linuxacademy.com/blog/linux/vi-short-cuts-for-beginners/ and https://vim.fandom.com/wiki/Copy,_cut_and_paste)
 
 The first task was to fully understand Thomson's construction and how it works as well as the shunting yard algorithm... Most of this was clearly explained in the practical videos our lecturer put on moodle but I still had to do a little bit of online research just to make things clear for myself... I found some very useful information on Thomson's construction on the wikipedia page (https://en.wikipedia.org/wiki/Thompson%27s_construction), while I know wikipedia isn't always the most reliable source, I was able to compare the information on the wiki page with the information my lecturer provided me to develop a better understanding of Thomsons construction and how it transforms a RE into a NFA.
@@ -18,7 +18,7 @@ Aside from the stuff that we were taught by our lecturer, I didn't have a whole 
 I also decided to make a file to take in user input and allow them to see if a RE matches a NFA... Since I had no background in python I had to look this up online but found a perfect solution easily enough here (https://www.geeksforgeeks.org/taking-input-in-python/)
 Precedence orders found & symbols used (7 = highest precedence, 1 = lowest) '*' : 7, '+' : 6, '?':5, '.': 4, '|': 3, ')' : 2, '(' : 1  
 
-How my code works:
+## How my code works:
 I have 2 python scripts. 1 called regex.py which does all of the calculations, the other called runner.py which is the one that the user run's... this is where to user enters their regular expression and string, these are sent to a function in regex.py which returns whether or not the regex matches the string. I think the comments in my code clearly outline where everything occurs, but just in case it may be unclear here's what happens:
 in regex.py: I have 2 classes containing only constructors, State and Fragment...  State represents a state that the NFA is in and it has either 1 or two arrows pointing from it. Fragment class represents an NFA fragment and has a start state and an accept state.
 
@@ -32,7 +32,7 @@ The match method is the method which implements all of the pre-defined methods a
 
 Finally, I have a method called Test(), which contains a range of tests consisting of regular expressions, strings and Expected results. This is done through multi test assertion and the call for the method has been commented out for efficiency purposes, and because it has already been tested and running developer-side tests every time in regex.py would just be very inefficient.
 
-Any feedback would be much appreciated and any queries may be directed towards my GMIT email address = G00354922@gmit.ie
+**Any feedback would be much appreciated and any queries may be directed towards my GMIT email address = G00354922@gmit.ie**
 
-## License
+### License
 [MIT](https://choosealicense.com/licenses/mit/)
