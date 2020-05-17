@@ -23,7 +23,17 @@ This was done by seperating the operators from the regular characters and then r
 - Type python3 runner.py --info -> to see information about the developer
 
 # Test
+Testing was done through multi test assertion which is a debugging aid that tests a condition! If the condition is true, it does nothing and the program just continues to execute. But if the assert condition evaluates to false, it raises an AssertionError exception with an optional error message. So if the expected result for the NFA doesn't match the actual result, there will be an error message.
+I added a number of groups of tests by using a test function which contained lists of different test cases which were layed out as follows: 
+testType [
+  ["regular expression", "string", expected result]
+]
 
+![testPic1](https://i.ibb.co/rf2TRxj/test1.png)
+
+I then ran these lists through a loop, asserting each test case and validating them by using the assert keyword (https://www.programiz.com/python-programming/assert-statement)
+
+![testPic2](https://i.ibb.co/4F30T75/test2.png)
 
 # Algorithm
 I have 2 python scripts. 1 called regex.py which does all of the calculations, the other called runner.py which is the one that the user runs... this is where to user enters their regular expression and string, these are sent to a function in regex.py which returns whether or not the regex matches the string. 
@@ -40,7 +50,7 @@ The next followe(psilon)s method is a method which ensures all of the epsilon ed
 
 The match method is the method which implements all of the pre-defined methods and uses them together to check and see if the regular expression fully matches the string (No partial matches, only full matches will be accepted). This function returns true if, and only if the NFA fully matches the string, otherwise it returns false.
 
-Finally, I have a method called Test(), which contains a range of tests consisting of regular expressions, strings and Expected results. This is done through multi test assertion which is a debugging aid that tests a condition. If the condition is true, it does nothing and the program just continues to execute. But if the assert condition evaluates to false, it raises an AssertionError exception with an optional error message. So if the expected result for the NFA doesn't match the actual result, there will be an error message. The call for the method has been commented out for efficiency purposes, and because it has already been tested and running developer-side tests every time in regex.py would just be very inefficient.
+Finally, I have a method called Test(), which contains a range of tests consisting of regular expressions, strings and Expected results. The call for the method has been commented out for efficiency purposes, and because it has already been tested and running developer-side tests every time in regex.py would just be very inefficient.
 
 
 # References
