@@ -34,10 +34,10 @@ Finally, I have a method called Test(), which contains a range of tests consisti
 
 ## How to use this program
 in VI:
- 1: Type python3 runner.pi"+ 
- 2: Type regular expression in human readable form (e.g. aaa.b)
- 3: Type string to check against regular expression (e.g. aaab)
- Alternatively: Type python3 runner.py --string1 (regular expression) --string2 (string)
+- Type python3 runner.pi"+ 
+- Type regular expression in human readable form (e.g. aaa.b)
+- Type string to check against regular expression (e.g. aaab)
+- Alternatively: Type python3 runner.py --string1 (regular expression) --string2 (string)
 
 **Any feedback would be much appreciated and any queries may be directed towards my GMIT email address = G00354922@gmit.ie**
 
