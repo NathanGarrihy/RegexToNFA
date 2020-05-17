@@ -32,6 +32,13 @@ The match method is the method which implements all of the pre-defined methods a
 
 Finally, I have a method called Test(), which contains a range of tests consisting of regular expressions, strings and Expected results. This is done through multi test assertion which is a debugging aid that tests a condition. If the condition is true, it does nothing and the program just continues to execute. But if the assert condition evaluates to false, it raises an AssertionError exception with an optional error message. So if the expected result for the NFA doesn't match the actual result, there will be an error message. The call for the method has been commented out for efficiency purposes, and because it has already been tested and running developer-side tests every time in regex.py would just be very inefficient.
 
+## How to use this program
+in VI:
+ 1: Type python3 runner.pi"+ 
+ 2: Type regular expression in human readable form (e.g. aaa.b)
+ 3: Type string to check against regular expression (e.g. aaab)
+ Alternatively: Type python3 runner.py --string1 (regular expression) --string2 (string)
+
 **Any feedback would be much appreciated and any queries may be directed towards my GMIT email address = G00354922@gmit.ie**
 
 ### License
