@@ -1,10 +1,15 @@
 # Introduction
 For our graph theory project 2020 we were tasked to write a program using Python that can build a non-deterministic finite automaton (NFA) from a regular expression. In simpler terms, I had to create a program that tests a given string and sees if it is a match for a given regular expression. 
 I used Thomson's construction to transform my regular expression into a NFA
+
 ![thomsonPic](https://i.ibb.co/WfJCR6q/thomson1.png)
+
 When taking in regular expressions, the computer reads the RE's in a different way to humans so for example humans would read a.b (a concatinate b) while computers would read ab.-> I used a shunting yard algorithm to convert human readable RE's (infix notation) into computer readable (postfix notion). 
+
 ![shuntingHowTo](https://i.ibb.co/bzVcCzt/shunting2.png)
+
 This was done by seperating the operators from the regular characters and then re-shuffling the regular expression into human readable postfix notation.
+
 ![shuntingPic](https://i.ibb.co/5MyDRt3/shunting1.png)
 
 # Run
