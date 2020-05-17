@@ -13,6 +13,13 @@ This was done by seperating the operators from the regular characters and then r
 ![shuntingPic](https://i.ibb.co/5MyDRt3/shunting1.png)
 
 # Run
+## Prerequisites
+- Create / sign into a Google Cloud account
+- go to compute engine -> VM instances -> Create New VM Instance
+- Set the boot engine to Linux (i highly reccomend 'Debian GNU/ Linux 10') -> Click create
+- Make sure VM is running and click SSH to start SSH session on virtual machine
+- do 'sudo apt update' to get most up to date packages for debian
+- do
 ## To Run the program
 - Type 'python3 runner.pi'
 - Type regular expression in human readable form (e.g. 'aaa.b')
