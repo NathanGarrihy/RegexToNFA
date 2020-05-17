@@ -24,6 +24,7 @@ This was done by seperating the operators from the regular characters and then r
 
 # Test
 
+
 # Algorithm
 I have 2 python scripts. 1 called regex.py which does all of the calculations, the other called runner.py which is the one that the user runs... this is where to user enters their regular expression and string, these are sent to a function in regex.py which returns whether or not the regex matches the string. 
 
@@ -43,3 +44,11 @@ Finally, I have a method called Test(), which contains a range of tests consisti
 
 
 # References
+Python help - (https://www.python.org/) and (https://realpython.com/)
+VI help - (https://linuxacademy.com/blog/linux/vi-short-cuts-for-beginners/ and https://vim.fandom.com/wiki/Copy,_cut_and_paste)
+Thomsons Construction - https://en.wikipedia.org/wiki/Thompson%27s_construction
+Shunting yard algorithm - https://www.youtube.com/watch?v=Wz85Hiwi5MY
+Operator order presedence - https://www.gnu.org/software/gcal/manual/html_node/Regexp-Operators.html
+Taking user input in python - https://www.geeksforgeeks.org/taking-input-in-python/
+Graph Theory module moodle (must have permission to access) - https://learnonline.gmit.ie/course/view.php?id=1599  
+Assert in Python - https://www.programiz.com/python-programming/assert-statement
