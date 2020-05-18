@@ -26,11 +26,13 @@ This was done by seperating the operators from the regular characters and then r
 - Clone this repository into your working directory by typing:
 - 'git clone https://github.com/NathanGarrihy/GTProject.git'
 
+![prereq](https://i.ibb.co/p3gRnNw/pic1.png)
+
 ### Versions
-VIM - Vi IMproved 8.1 (2018 May 18, compiled Jun 15 2019 16:41:15)
-gcc (Debian 8.3.0-6) 8.3.0
-git version 2.20.1
-GNU Wget 1.20.1 built on linux-gnu.
+- VIM - Vi IMproved 8.1 (2018 May 18, compiled Jun 15 2019 16:41:15)
+- gcc (Debian 8.3.0-6) 8.3.0
+- git version 2.20.1
+- GNU Wget 1.20.1 built on linux-gnu.
 
 ## To Run the program
 - Type 'python3 runner.pi'
@@ -40,6 +42,8 @@ GNU Wget 1.20.1 built on linux-gnu.
 ## Other options:
 - Type python3 runner.py --version -> to see the current version of the program
 - Type python3 runner.py --info -> to see information about the developer
+
+![help](https://i.ibb.co/MDzhy72/pic2.png)
 
 # Test
 Testing was done through multi test assertion which is a debugging aid that tests a condition! If the condition is true, it does nothing and the program just continues to execute. But if the assert condition evaluates to false, it raises an AssertionError exception with an optional error message. So if the expected result for the NFA doesn't match the actual result, there will be an error message.
@@ -59,15 +63,27 @@ I have 2 python scripts. 1 called regex.py which does all of the calculations, t
 
 In regex.py: I have 2 classes containing only constructors, State and Fragment... State represents a state that the NFA is in and it has either 1 or two arrows pointing from it. 
 
+![state](https://i.ibb.co/t2h0Csh/pic3.png)
+
 Fragment class represents an NFA fragment and has a start state and an accept state.
+
+![frag](https://i.ibb.co/zNT2DD4/pic4.png)
 
 After these classes, I have a shunt method. This is basically the shunting yard algorithm... Basically, it takes a regular expression which uses infix notation, easily read by the human eye (eg a.b) and first converts this RE into postfix, which is more easily read by the computer (eg ab.). It does this by turning the infix string into a stack-ish list, looping through the input 1 character at a time, popping a character from the input and adding it to either the new operator stack or the new postfix stack, ensuring that the right symbol is added according to its order in precedence. We then add the operators to the end of the postfix stack and output as a postfix NFA.
 
+![shunt](https://i.ibb.co/t2xXnKW/pic5.png)
+
 The next method created is the compile method, which calls the shunt method! Then, it takes the returned postfix expression, reverses it so that it can be used as part of a stack. It then decides which operator is being used by popping a character from the reversed postfix list, and constructs the relevent state and fragment(s) for that symbol and adds this new fragment onto the NFA Stack.
+
+![compile](https://i.ibb.co/0Yhym7V/pic6.png)
 
 The next followe(psilon)s method is a method which ensures all of the epsilon edges are followed by the NFA. It does this by using the current state and the state to be checked. It is very important that all epsilon edges are followed.
 
+![followEs](https://i.ibb.co/R34SG8g/pic7.png)
+
 The match method is the method which implements all of the pre-defined methods and uses them together to check and see if the regular expression fully matches the string (No partial matches, only full matches will be accepted). This function returns true if, and only if the NFA fully matches the string, otherwise it returns false.
+
+![match](https://i.ibb.co/FJDvYG1/pic8.png)
 
 Finally, I have a method called Test(), which contains a range of tests consisting of regular expressions, strings and Expected results. The call for the method has been commented out for efficiency purposes, and because it has already been tested and running developer-side tests every time in regex.py would just be very inefficient.
 
