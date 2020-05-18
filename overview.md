@@ -97,3 +97,7 @@ Finally, I have a method called Test(), which contains a range of tests consisti
 - Taking user input in python - https://www.geeksforgeeks.org/taking-input-in-python/
 - Graph Theory module moodle (must have permission to access) - https://learnonline.gmit.ie/course/view.php?id=1599  
 - Assert in Python - https://www.programiz.com/python-programming/assert-statement
+
+![python](https://d2vqbs7xgyce6n.cloudfront.net/assets/v6a8a497317/bundles/blackfire/img/no-footprint-python.png)
+
+![GMIT](https://www.nightcourses.com/wp-content/uploads/2011/12/gmitlogo.jpg)
