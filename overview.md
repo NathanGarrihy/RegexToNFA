@@ -19,7 +19,19 @@ This was done by seperating the operators from the regular characters and then r
 - Set the boot engine to Linux (i highly reccomend 'Debian GNU/ Linux 10') -> Click create
 - Make sure VM is running and click SSH to start SSH session on virtual machine
 - do 'sudo apt update' to get most up to date packages for debian
-- do
+- do 'sudo apt upgrade' to upgrade these packages
+- do 'sudo apt install git' to install github to your VM
+- do 'sudo apt install build-essential' to install GCC
+- do 'sudo apt install wget' for better file downloading
+- Clone this repository into your working directory by typing:
+- 'git clone https://github.com/NathanGarrihy/GTProject.git'
+
+### Versions
+VIM - Vi IMproved 8.1 (2018 May 18, compiled Jun 15 2019 16:41:15)
+gcc (Debian 8.3.0-6) 8.3.0
+git version 2.20.1
+GNU Wget 1.20.1 built on linux-gnu.
+
 ## To Run the program
 - Type 'python3 runner.pi'
 - Type regular expression in human readable form (e.g. 'aaa.b')
